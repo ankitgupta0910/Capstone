@@ -35,8 +35,17 @@ pipeline {
 				withAWS(credentials: 'Capstone', region: 'us-west-2')
 				{
 					sh 'aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster'
-					sh 'kubectl apply -f EKSDeploy.yml'
 				}
+				sh '''
+					kubectl get deployments
+					kubectl get pods
+					kubectl get services
+					kubectl apply -f EKSDeploy.yml
+					kubectl rollout status deployments/udacitycapstone-deploy
+					kubectl get deployments
+					kubectl get pods
+					kubectl get services
+				'''
 			}
 		}
      }
