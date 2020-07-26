@@ -23,7 +23,7 @@ pipeline {
 				    }
                     sh '''
                         dockerpath=ankit0910/finalcapstone
-                        docker tag udacitycapstoneprjct $dockerpath:v1
+                        docker tag udacitycapstoneprjct:v1 $dockerpath:v1
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
 					'''
