@@ -9,7 +9,7 @@ pipeline {
          stage('Build Docker Image') {
 			steps {
 					sh '''
-						docker build -t udacitycapstoneproject:v2 .
+						docker build -t udacitycapstoneproject:v3 .
 					'''
 			}
 		}
@@ -23,8 +23,7 @@ pipeline {
 					sh 'docker login -u $username -p $passwordd'
 				    }
                     sh '''
-                        docker login --username ankit0910 --password California@15
-                        docker tag udacitycapstoneproject $dockerpath:v2
+                        docker tag udacitycapstoneproject $dockerpath:v3
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
 					'''
