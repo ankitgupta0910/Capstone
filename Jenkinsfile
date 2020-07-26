@@ -9,7 +9,7 @@ pipeline {
          stage('Build Docker Image') {
 			steps {
 					sh '''
-						docker build -t udacitycapstoneproject:v1 .
+						docker build -t udacitycapstoneproject:v2 .
 					'''
 			}
 		}
@@ -19,11 +19,19 @@ pipeline {
                         dockerpath=ankit0910/capstone
 						docker logout
                         docker login --username ankit0910 --password California@15
-                        docker tag udacitycapstoneproject $dockerpath:v1
+                        docker tag udacitycapstoneproject $dockerpath:v2
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
 					'''
 			}
-		}  
+		}
+        stage('Set current kubectl context') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Capstone') {
+					sh '''
+						kubectl config use-context arn:aws:eks:us-west-2:994362272645:cluster/CapstoneCluster
+					'''
+				}
+			}  
      }
 }
