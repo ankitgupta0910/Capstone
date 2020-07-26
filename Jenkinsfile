@@ -22,7 +22,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'passwordd', usernameVariable: 'username')]) {
 					sh 'docker login -u $username -p $passwordd'
 				    }
-                    '''
+                    sh '''
                         docker login --username ankit0910 --password California@15
                         docker tag udacitycapstoneproject $dockerpath:v2
                         echo "Docker ID and Image: $dockerpath"
