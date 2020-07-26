@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: udacitycapstone-pod
-        image: ankit0910/capstone:v3
+        image: ankit0910/capstone:v4
         imagePullPolicy: Always
         ports:
         - containerPort: 80

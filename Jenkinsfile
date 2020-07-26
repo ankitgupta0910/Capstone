@@ -9,7 +9,7 @@ pipeline {
          stage('Build Docker Image') {
 			steps {
 					sh '''
-						docker build -t udacitycapstoneproject:v3 .
+						docker build -t udacitycapstoneproject:v4 .
 					'''
 			}
 		}
@@ -23,7 +23,7 @@ pipeline {
 				    }
                     sh '''
                         dockerpath=ankit0910/capstone
-                        docker tag udacitycapstoneproject $dockerpath:v3
+                        docker tag udacitycapstoneproject $dockerpath:v4
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
 					'''
@@ -39,11 +39,13 @@ pipeline {
 					kubectl get deployments
 					kubectl get pods
 					kubectl get services
+					kubectl describe pods
 					kubectl apply -f EKSDeploy.yml
 					kubectl rollout status deployments/udacitycapstone-deploy
 					kubectl get deployments
 					kubectl get pods
 					kubectl get services
+					kubectl describe pods
 				'''
 				}
 			}
