@@ -1,0 +1,555 @@
++ aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster
+Updated context arn:aws:eks:us-west-2:994362272645:cluster/CapstoneCluster in /var/lib/jenkins/.kube/config
++ kubectl get deployments
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+udacitycapstone-deploy   5/5     5            5           40m
++ kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+udacitycapstone-deploy-564d44b7bf-25kvj   1/1     Running   0          10m
+udacitycapstone-deploy-564d44b7bf-7tv6h   1/1     Running   0          10m
+udacitycapstone-deploy-564d44b7bf-btwzb   1/1     Running   0          9m36s
+udacitycapstone-deploy-564d44b7bf-fdtth   1/1     Running   0          9m48s
+udacitycapstone-deploy-564d44b7bf-t4vpm   1/1     Running   0          9m48s
++ kubectl get services
+NAME              TYPE           CLUSTER-IP    EXTERNAL-IP                                                               PORT(S)        AGE
+kubernetes        ClusterIP      172.20.0.1    <none>                                                                    443/TCP        3h5m
+udacitycapstone   LoadBalancer   172.20.48.5   a27045100cf2411eab4f306b796915f2-1256922587.us-west-2.elb.amazonaws.com   80:30818/TCP   40m
++ kubectl describe pods
+Name:           udacitycapstone-deploy-564d44b7bf-25kvj
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-1-7.us-west-2.compute.internal/10.0.1.7
+Start Time:     Sun, 26 Jul 2020 10:11:20 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=564d44b7bf
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.1.101
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-564d44b7bf
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://25b4f578fcf6f2e2c964fa5593e18318f1261db89ce9b4910788b1e47ea044e1
+    Image:          ankit0910/capstone:v3
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:11:22 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                             Message
+  ----    ------     ----  ----                                             -------
+  Normal  Scheduled  10m   default-scheduler                                Successfully assigned default/udacitycapstone-deploy-564d44b7bf-25kvj to ip-10-0-1-7.us-west-2.compute.internal
+  Normal  Pulling    10m   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v3"
+  Normal  Pulled     10m   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v3"
+  Normal  Created    10m   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    10m   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-564d44b7bf-7tv6h
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-250.us-west-2.compute.internal/10.0.0.250
+Start Time:     Sun, 26 Jul 2020 10:11:20 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=564d44b7bf
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.144
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-564d44b7bf
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://a8fad6aac6f11ea60985cc927478ec9253c180f64f24709ab497897cb3c9f8c0
+    Image:          ankit0910/capstone:v3
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:11:22 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                               Message
+  ----    ------     ----  ----                                               -------
+  Normal  Scheduled  10m   default-scheduler                                  Successfully assigned default/udacitycapstone-deploy-564d44b7bf-7tv6h to ip-10-0-0-250.us-west-2.compute.internal
+  Normal  Pulling    10m   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v3"
+  Normal  Pulled     10m   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v3"
+  Normal  Created    10m   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    10m   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-564d44b7bf-btwzb
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-93.us-west-2.compute.internal/10.0.0.93
+Start Time:     Sun, 26 Jul 2020 10:11:46 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=564d44b7bf
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.18
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-564d44b7bf
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://8a90a2b856ca6bf565b499d832ca69dab832996c8938631247bed55fdff7a3f3
+    Image:          ankit0910/capstone:v3
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:11:47 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age    From                                              Message
+  ----    ------     ----   ----                                              -------
+  Normal  Scheduled  9m38s  default-scheduler                                 Successfully assigned default/udacitycapstone-deploy-564d44b7bf-btwzb to ip-10-0-0-93.us-west-2.compute.internal
+  Normal  Pulling    9m37s  kubelet, ip-10-0-0-93.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v3"
+  Normal  Pulled     9m36s  kubelet, ip-10-0-0-93.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v3"
+  Normal  Created    9m36s  kubelet, ip-10-0-0-93.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    9m35s  kubelet, ip-10-0-0-93.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-564d44b7bf-fdtth
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-9.us-west-2.compute.internal/10.0.0.9
+Start Time:     Sun, 26 Jul 2020 10:11:33 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=564d44b7bf
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.133
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-564d44b7bf
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://e95682c2a85dd1d123b08f6b74b7a857c196ff26763b82b40f4559a1f06d7455
+    Image:          ankit0910/capstone:v3
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:11:35 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age    From                                             Message
+  ----    ------     ----   ----                                             -------
+  Normal  Scheduled  9m50s  default-scheduler                                Successfully assigned default/udacitycapstone-deploy-564d44b7bf-fdtth to ip-10-0-0-9.us-west-2.compute.internal
+  Normal  Pulling    9m50s  kubelet, ip-10-0-0-9.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v3"
+  Normal  Pulled     9m49s  kubelet, ip-10-0-0-9.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v3"
+  Normal  Created    9m49s  kubelet, ip-10-0-0-9.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    9m48s  kubelet, ip-10-0-0-9.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-564d44b7bf-t4vpm
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-1-27.us-west-2.compute.internal/10.0.1.27
+Start Time:     Sun, 26 Jul 2020 10:11:33 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=564d44b7bf
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.1.26
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-564d44b7bf
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://1736a2dcd297ecee7760ec519f2f43544d16b9320f653816fb4b4f5d8311b3bc
+    Image:          ankit0910/capstone:v3
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:11:35 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age    From                                              Message
+  ----    ------     ----   ----                                              -------
+  Normal  Scheduled  9m50s  default-scheduler                                 Successfully assigned default/udacitycapstone-deploy-564d44b7bf-t4vpm to ip-10-0-1-27.us-west-2.compute.internal
+  Normal  Pulling    9m49s  kubelet, ip-10-0-1-27.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v3"
+  Normal  Pulled     9m49s  kubelet, ip-10-0-1-27.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v3"
+  Normal  Created    9m48s  kubelet, ip-10-0-1-27.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    9m48s  kubelet, ip-10-0-1-27.us-west-2.compute.internal  Started container udacitycapstone-pod
++ kubectl apply -f EKSDeploy.yml
+service/udacitycapstone unchanged
+deployment.apps/udacitycapstone-deploy configured
++ kubectl rollout status deployments/udacitycapstone-deploy
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 2 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 2 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 2 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 2 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 2 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 out of 5 new replicas have been updated...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 of 5 updated replicas are available...
+Waiting for deployment "udacitycapstone-deploy" rollout to finish: 4 of 5 updated replicas are available...
+deployment "udacitycapstone-deploy" successfully rolled out
++ kubectl get deployments
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+udacitycapstone-deploy   5/5     5            5           40m
++ kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+udacitycapstone-deploy-78686d87b6-242l4   1/1     Running   0          13s
+udacitycapstone-deploy-78686d87b6-d5vns   1/1     Running   0          39s
+udacitycapstone-deploy-78686d87b6-fp87g   1/1     Running   0          26s
+udacitycapstone-deploy-78686d87b6-h9kn8   1/1     Running   0          39s
+udacitycapstone-deploy-78686d87b6-r542p   1/1     Running   0          26s
++ kubectl get services
+NAME              TYPE           CLUSTER-IP    EXTERNAL-IP                                                               PORT(S)        AGE
+kubernetes        ClusterIP      172.20.0.1    <none>                                                                    443/TCP        3h6m
+udacitycapstone   LoadBalancer   172.20.48.5   a27045100cf2411eab4f306b796915f2-1256922587.us-west-2.elb.amazonaws.com   80:30818/TCP   40m
++ kubectl describe pods
+Name:           udacitycapstone-deploy-78686d87b6-242l4
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-250.us-west-2.compute.internal/10.0.0.250
+Start Time:     Sun, 26 Jul 2020 10:21:50 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=78686d87b6
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.100
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-78686d87b6
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://1e3d7437e32c07d48752548bd646db153c8316d2941a415e6c03191f22c0925b
+    Image:          ankit0910/capstone:v4
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:21:52 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                               Message
+  ----    ------     ----  ----                                               -------
+  Normal  Scheduled  15s   default-scheduler                                  Successfully assigned default/udacitycapstone-deploy-78686d87b6-242l4 to ip-10-0-0-250.us-west-2.compute.internal
+  Normal  Pulling    14s   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v4"
+  Normal  Pulled     13s   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v4"
+  Normal  Created    13s   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    13s   kubelet, ip-10-0-0-250.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-78686d87b6-d5vns
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-93.us-west-2.compute.internal/10.0.0.93
+Start Time:     Sun, 26 Jul 2020 10:21:24 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=78686d87b6
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.213
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-78686d87b6
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://9d1e6db7dc5583e3f9c99a2e9c0c1a7824d0af5595c93f0c7a9f5d13de883631
+    Image:          ankit0910/capstone:v4
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:21:26 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                              Message
+  ----    ------     ----  ----                                              -------
+  Normal  Scheduled  41s   default-scheduler                                 Successfully assigned default/udacitycapstone-deploy-78686d87b6-d5vns to ip-10-0-0-93.us-west-2.compute.internal
+  Normal  Pulling    40s   kubelet, ip-10-0-0-93.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v4"
+  Normal  Pulled     39s   kubelet, ip-10-0-0-93.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v4"
+  Normal  Created    39s   kubelet, ip-10-0-0-93.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    39s   kubelet, ip-10-0-0-93.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-78686d87b6-fp87g
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-0-9.us-west-2.compute.internal/10.0.0.9
+Start Time:     Sun, 26 Jul 2020 10:21:37 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=78686d87b6
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.0.7
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-78686d87b6
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://5ee6334301ee505d49e93428b881ff0ce3bf6541949fdc8b13896f65a293a399
+    Image:          ankit0910/capstone:v4
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:21:39 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                             Message
+  ----    ------     ----  ----                                             -------
+  Normal  Scheduled  28s   default-scheduler                                Successfully assigned default/udacitycapstone-deploy-78686d87b6-fp87g to ip-10-0-0-9.us-west-2.compute.internal
+  Normal  Pulling    27s   kubelet, ip-10-0-0-9.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v4"
+  Normal  Pulled     26s   kubelet, ip-10-0-0-9.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v4"
+  Normal  Created    26s   kubelet, ip-10-0-0-9.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    26s   kubelet, ip-10-0-0-9.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-78686d87b6-h9kn8
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-1-27.us-west-2.compute.internal/10.0.1.27
+Start Time:     Sun, 26 Jul 2020 10:21:24 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=78686d87b6
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.1.48
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-78686d87b6
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://6a2e4c29d1e6a729c30368f8b8afcd2e81c6e0e95397a9cee68bfe84d21a60ae
+    Image:          ankit0910/capstone:v4
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:21:26 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                              Message
+  ----    ------     ----  ----                                              -------
+  Normal  Scheduled  41s   default-scheduler                                 Successfully assigned default/udacitycapstone-deploy-78686d87b6-h9kn8 to ip-10-0-1-27.us-west-2.compute.internal
+  Normal  Pulling    40s   kubelet, ip-10-0-1-27.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v4"
+  Normal  Pulled     39s   kubelet, ip-10-0-1-27.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v4"
+  Normal  Created    39s   kubelet, ip-10-0-1-27.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    39s   kubelet, ip-10-0-1-27.us-west-2.compute.internal  Started container udacitycapstone-pod
+
+
+Name:           udacitycapstone-deploy-78686d87b6-r542p
+Namespace:      default
+Priority:       0
+Node:           ip-10-0-1-7.us-west-2.compute.internal/10.0.1.7
+Start Time:     Sun, 26 Jul 2020 10:21:37 +0000
+Labels:         app=udacitycapstone
+                pod-template-hash=78686d87b6
+Annotations:    kubernetes.io/psp: eks.privileged
+Status:         Running
+IP:             10.0.1.237
+IPs:            <none>
+Controlled By:  ReplicaSet/udacitycapstone-deploy-78686d87b6
+Containers:
+  udacitycapstone-pod:
+    Container ID:   docker://a5f0c3c0b5ede5533f0adf1a536861e864310699f59443f8fec3547df4665dd2
+    Image:          ankit0910/capstone:v4
+    Image ID:       docker-pullable://ankit0910/capstone@sha256:6ff853e65c6eccc70015cccfe1c2355d525c657374bc006ecd82699166643d6a
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 26 Jul 2020 10:21:39 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-qjgsz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-qjgsz:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-qjgsz
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                                             Message
+  ----    ------     ----  ----                                             -------
+  Normal  Scheduled  28s   default-scheduler                                Successfully assigned default/udacitycapstone-deploy-78686d87b6-r542p to ip-10-0-1-7.us-west-2.compute.internal
+  Normal  Pulling    27s   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Pulling image "ankit0910/capstone:v4"
+  Normal  Pulled     26s   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Successfully pulled image "ankit0910/capstone:v4"
+  Normal  Created    26s   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Created container udacitycapstone-pod
+  Normal  Started    26s   kubelet, ip-10-0-1-7.us-west-2.compute.internal  Started container udacitycapstone-pod

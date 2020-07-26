@@ -5,13 +5,13 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath=ankit0910/udacityroject
+dockerpath=ankit0910/test
 
 # Step 2:  
 # Authenticate & tag
 docker logout
 docker login --username ankit0910 --password California@15
-docker tag capstoneproject1 
+docker tag cap $dockerpath
 echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
