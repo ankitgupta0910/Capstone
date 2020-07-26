@@ -18,6 +18,11 @@ pipeline {
 					sh '''
                         dockerpath=ankit0910/capstone
 						docker logout
+                    '''    
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'passwordd', usernameVariable: 'username')]) {
+					sh 'docker login -u $username -p $passwordd'
+				    }
+                    '''
                         docker login --username ankit0910 --password California@15
                         docker tag udacitycapstoneproject $dockerpath:v2
                         echo "Docker ID and Image: $dockerpath"
@@ -25,14 +30,15 @@ pipeline {
 					'''
 			}
 		}
-        stage('Set current kubectl context') {
-			steps {
-				withAWS(region:'us-west-2', credentials:'Capstone') {
-					sh '''
-						kubectl config use-context arn:aws:eks:us-west-2:994362272645:cluster/CapstoneCluster
-					'''
+        stage('Deploying in EKS')
+		{
+			steps{
+				withAWS(credentials: 'CapStone', region: 'us-west-2')
+				{
+					sh 'aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster'
+					sh 'kubectl apply -f EKSDeploy.yml'
 				}
-			}  
-        }
+			}
+		}
      }
 }
