@@ -16,13 +16,13 @@ pipeline {
         stage('Push Image To Dockerhub') {
 			steps {
 					sh '''
-                        dockerpath=ankit0910/capstone
-						docker logout
+                        docker logout
                     '''    
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'passwordd', usernameVariable: 'username')]) {
 					sh 'docker login -u $username -p $passwordd'
 				    }
                     sh '''
+                        dockerpath=ankit0910/capstone
                         docker tag udacitycapstoneproject $dockerpath:v3
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
