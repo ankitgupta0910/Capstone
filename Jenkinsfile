@@ -21,7 +21,7 @@ pipeline {
                         docker login --username ankit0910 --password California@15
                         docker tag udacitycapstoneproject udacitycapstoneproject/v1
                         echo "Docker ID and Image: $dockerpath"
-                        docker push $dockerpath
+                        docker push udacitycapstoneproject/v1
 					'''
 			}
 		}  
