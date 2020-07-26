@@ -35,7 +35,7 @@ pipeline {
 				withAWS(credentials: 'Capstone', region: 'us-west-2')
 				{
 				sh '''
-					aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster'
+					aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster
 					kubectl get deployments
 					kubectl get pods
 					kubectl get services
