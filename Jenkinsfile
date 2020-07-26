@@ -32,7 +32,7 @@ pipeline {
         stage('Deploying in EKS')
 		{
 			steps{
-				withAWS(credentials: 'CapStone', region: 'us-west-2')
+				withAWS(credentials: 'Capstone', region: 'us-west-2')
 				{
 					sh 'aws eks --region=us-west-2 update-kubeconfig --name CapstoneCluster'
 					sh 'kubectl apply -f EKSDeploy.yml'
