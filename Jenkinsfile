@@ -9,7 +9,7 @@ pipeline {
          stage('Build Docker Image') {
 			steps {
 					sh '''
-						docker build -t udacitycapstoneprjct:v1 .
+						docker build -t udacitycapstoneprjct:v2 .
 					'''
 			}
 		}
@@ -23,7 +23,7 @@ pipeline {
 				    }
                     sh '''
                         dockerpath=ankit0910/finalcapstone
-                        docker tag udacitycapstoneprjct:v1 $dockerpath:v1
+                        docker tag udacitycapstoneprjct:v2 $dockerpath:v2
                         echo "Docker ID and Image: $dockerpath"
                         docker push $dockerpath
 					'''
