@@ -1,0 +1,47 @@
+Description: >
+    Ankit Gupta / Udacity 2020
+
+Parameters:
+
+    EnvironmentName:
+        Description: An environment name that will be prefixed to resource names
+        Type: String
+
+Resources:
+  
+  CapstoneCluster:
+    Type: 'AWS::EKS::Cluster'
+    Properties:
+      Name: CapstoneCluster
+      Version: '1.14'
+      RoleArn: >-
+        arn:aws:iam::994362272645:role/CapstoneRole
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - sg-009d526cb416c7258
+        SubnetIds:
+        - Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
+        - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
+
+  CapstoneEKSNodegroup:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: 
+        Ref: CapstoneCluster
+      NodeRole: 'arn:aws:iam::994362272645:role/CapstoneEKSNodesRole'
+      ScalingConfig:
+        MinSize: 3
+        DesiredSize: 5
+        MaxSize: 7
+      Subnets:
+      - Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
+      - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
+  # WebAppLB:
+  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  #   Properties:
+  #     Subnets:
+  #     - Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
+  #     - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
+  #     VpcId: 
+  #       Fn::ImportValue:
+  #         Fn::Sub: "${EnvironmentName}-VPCID"
